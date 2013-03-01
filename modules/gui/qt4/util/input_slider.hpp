@@ -86,6 +86,7 @@ private:
     TimeTooltip *mTimeTooltip;
     float f_buffering;
     SeekPoints* chapters;
+    QPixmap barcode;
     bool b_classic;
     bool b_seekable;
     int mHandleLength;
@@ -109,6 +110,8 @@ public slots:
     void setPosition( float, int64_t, int );
     void setSeekable( bool b ) { b_seekable = b ; }
     void updateBuffering( float );
+    void showBarcodeUpdate( input_item_t* );
+    void showBarcodeUpdate( const QString& );
     void hideHandle();
 
 private slots:

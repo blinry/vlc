@@ -27,6 +27,9 @@
 # include "config.h"
 #endif
 
+#include <vlc_common.h>
+#include <vlc_url.h>
+
 #include "qt4.hpp"
 
 #include "util/input_slider.hpp"
@@ -121,6 +124,8 @@ SeekSlider::SeekSlider( Qt::Orientation q, QWidget *_parent, bool _static )
     setPosition( -1.0, 0, 0 );
     secstotimestr( psz_length, 0 );
 
+    setMinimumHeight(150);
+
     animHandle = new QPropertyAnimation( this, "handleOpacity", this );
     animHandle->setDuration( FADEDURATION );
     animHandle->setStartValue( 0.0 );
@@ -197,6 +202,29 @@ void SeekSlider::updateBuffering( float f_buffering_ )
 {
     f_buffering = f_buffering_;
     repaint();
+}
+
+void SeekSlider::showBarcodeUpdate( const QString& url )
+{
+    QPixmap pix;
+    if( !url.isEmpty() && pix.load( url ) )
+    {
+        barcode = pix;
+    }
+    update();
+}
+
+void SeekSlider::showBarcodeUpdate( input_item_t *_p_item ) {
+    if ( _p_item ) {
+        char *ccurl = input_item_GetArtURL( _p_item );
+        if ( ccurl ) {
+            char *curl = make_path(ccurl);
+            //printf("ah: %s\n", curl);
+            QString url;
+            url = curl;
+            showBarcodeUpdate( url );
+        }
+    }
 }
 
 void SeekSlider::processReleasedButton()

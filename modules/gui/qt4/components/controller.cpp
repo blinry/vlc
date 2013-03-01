@@ -359,6 +359,8 @@ QWidget *AbstractController::createWidget( buttonType_e button, int options )
                  THEMIM->getIM(), sliderUpdate( float ) );
         CONNECT( THEMIM->getIM(), cachingChanged( float ),
                  slider, updateBuffering( float ) );
+        CONNECT( THEMIM->getIM(), artChanged( input_item_t* ),
+                 slider, showBarcodeUpdate( input_item_t* ) );
         /* Give hint to disable slider's interactivity when useless */
         CONNECT( THEMIM->getIM(), inputCanSeek( bool ),
                  slider, setSeekable( bool ) );
