@@ -33,6 +33,7 @@
 #include <vlc_common.h>
 #include "timetooltip.hpp"
 #include "styles/seekstyle.hpp"
+#include "styles/seekstyle_barcode.hpp"
 
 #include <QSlider>
 #include <QPainter>
@@ -123,6 +124,7 @@ signals:
 
 
     friend class SeekStyle;
+    friend class SeekStyleBarcode;
 };
 
 /* Sound Slider inherited directly from QAbstractSlider */

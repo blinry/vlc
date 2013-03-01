@@ -117,7 +117,8 @@ libqt4_plugin_la_SOURCES = \
 		util/qvlcframe.hpp \
 		util/qvlcapp.hpp \
 		util/singleton.hpp \
-	styles/seekstyle.cpp styles/seekstyle.hpp
+	styles/seekstyle.cpp styles/seekstyle.hpp \
+	styles/seekstyle_barcode.cpp styles/seekstyle_barcode.hpp
 if HAVE_WIN32
 libqt4_plugin_la_SOURCES += main_interface_win32.cpp
 endif
@@ -202,7 +203,8 @@ nodist_libqt4_plugin_la_SOURCES = \
 	util/buttons/RoundButton.moc.cpp \
 	util/buttons/DeckButtonsLayout.moc.cpp \
 	util/buttons/BrowseButton.moc.cpp \
-	styles/seekstyle.moc.cpp
+	styles/seekstyle.moc.cpp \
+	styles/seekstyle_barcode.moc.cpp
 
 nodist_libqt4_plugin_la_SOURCES += \
 	ui/equalizer.h \

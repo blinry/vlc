@@ -116,15 +116,14 @@ SeekSlider::SeekSlider( Qt::Orientation q, QWidget *_parent, bool _static )
     /* Use the new/classic style */
     if( !b_classic )
     {
-        alternativeStyle = new SeekStyle;
+        setMinimumHeight(120);
+        alternativeStyle = new SeekStyleBarcode;
         setStyle( alternativeStyle );
     }
 
     /* Init to 0 */
     setPosition( -1.0, 0, 0 );
     secstotimestr( psz_length, 0 );
-
-    setMinimumHeight(150);
 
     animHandle = new QPropertyAnimation( this, "handleOpacity", this );
     animHandle->setDuration( FADEDURATION );
