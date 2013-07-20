@@ -1,5 +1,7 @@
 SOURCES_folder = folder.c
 SOURCES_taglib = taglib.cpp ../demux/xiph_metadata.h ../demux/xiph_metadata.c
+SOURCES_nordlicht = nordlicht.c
 
 libvlc_LTLIBRARIES += \
-	libfolder_plugin.la
+	libfolder_plugin.la \
+	libnordlicht_plugin.la

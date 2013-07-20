@@ -3882,6 +3882,11 @@ dnl
 PKG_ENABLE_MODULES_VLC([GOOM], [], [libgoom2], [goom visualization plugin], [auto])
 
 dnl
+dnl nordlicht plugin
+dnl
+PKG_ENABLE_MODULES_VLC([NORDLICHT], [], [nordlicht], [movie-barcode generator], [auto])
+
+dnl
 dnl libprojectM visualization plugin
 dnl
 AC_ARG_ENABLE(projectm,
