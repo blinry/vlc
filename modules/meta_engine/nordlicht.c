@@ -63,7 +63,7 @@ static int FindMeta( vlc_object_t *p_this )
 {
     art_finder_t *p_finder = (art_finder_t *)p_this;
     input_item_t *p_item = p_finder->p_item;
-    input_item_SetArtURL( p_item, vlc_path2uri("/tmp/nordlicht.ppm", "file"));
+    input_item_SetArtURL( p_item, vlc_path2uri("/tmp/nordlicht.png", "file"));
 
     vlc_thread_t *thread = malloc(sizeof(vlc_thread_t));
     int ret = vlc_clone(thread, Run, p_item, VLC_THREAD_PRIORITY_LOW);
@@ -87,13 +87,14 @@ static void *Run(void *data)
     if( psz_path == NULL )
         return NULL;
 
-    nordlicht *code;
-    nordlicht_create(&code, 1200, 100);
-    nordlicht_output(code, "/tmp/nordlicht.png");
-    nordlicht_input(code, psz_path);
+    nordlicht *code = nordlicht_create(1200, 100);
 
-    while (nordlicht_progress(code) < 1) {
-        input_item_SetArtURL( p_item, vlc_path2uri("/tmp/nordlicht.png", "file"));
+    nordlicht_input(code, psz_path);
+    nordlicht_output(code, "/tmp/nordlicht.png");
+
+    while (!nordlicht_done(code)) {
+        nordlicht_step(code);
+        input_item_SetArtURL(p_item, vlc_path2uri("/tmp/nordlicht.png", "file"));
         sleep(1);
     }
 
